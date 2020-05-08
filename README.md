@@ -1,70 +1,66 @@
-# [Bedrock](https://roots.io/bedrock/)
+# Cpdock
 
-[![Packagist](https://img.shields.io/packagist/v/roots/bedrock.svg?style=flat-square)](https://packagist.org/packages/roots/bedrock)
-[![Build Status](https://img.shields.io/circleci/build/gh/roots/bedrock?style=flat-square)](https://circleci.com/gh/roots/bedrock)
-[![Follow Roots](https://img.shields.io/twitter/follow/rootswp.svg?style=flat-square&color=1da1f2)](https://twitter.com/rootswp)
+Cpdock is an easy setup of ClassicPress with Docker using Laradock for setting up nginx and mysql/mariadb containers.
 
-Bedrock is a modern WordPress stack that helps you get started with the best development tools and project structure.
+[Based on the composer install with Bedrock.](https://docs.classicpress.net/installing-classicpress/installing-with-composer/#after-installation)
 
-Much of the philosophy behind Bedrock is inspired by the [Twelve-Factor App](http://12factor.net/) methodology including the [WordPress specific version](https://roots.io/twelve-factor-wordpress/).
-
-## Features
-
-* Better folder structure
-* Dependency management with [Composer](https://getcomposer.org)
-* Easy WordPress configuration with environment specific files
-* Environment variables with [Dotenv](https://github.com/vlucas/phpdotenv)
-* Autoloader for mu-plugins (use regular plugins as mu-plugins)
-* Enhanced security (separated web root and secure passwords with [wp-password-bcrypt](https://github.com/roots/wp-password-bcrypt))
+The goal is to have a development environment by running a few commands.
 
 ## Requirements
 
-* PHP >= 7.1
-* Composer - [Install](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx)
+* Git
+
+* Docker [ >= 17.12 ]
 
 ## Installation
 
-1. Create a new project:
-    ```sh
-    $ composer create-project roots/bedrock
+1. Clone cpdock on your desired work directory:
     ```
-2. Update environment variables in the `.env` file. Wrap values that may contain non-alphanumeric characters with quotes, or they may be incorrectly parsed.
-  * Database variables
-    * `DB_NAME` - Database name
-    * `DB_USER` - Database user
-    * `DB_PASSWORD` - Database password
-    * `DB_HOST` - Database host
-    * Optionally, you can define `DATABASE_URL` for using a DSN instead of using the variables above (e.g. `mysql://user:password@127.0.0.1:3306/db_name`)
-  * `WP_ENV` - Set to environment (`development`, `staging`, `production`)
-  * `WP_HOME` - Full URL to WordPress home (https://example.com)
-  * `WP_SITEURL` - Full URL to WordPress including subdirectory (https://example.com/wp)
-  * `AUTH_KEY`, `SECURE_AUTH_KEY`, `LOGGED_IN_KEY`, `NONCE_KEY`, `AUTH_SALT`, `SECURE_AUTH_SALT`, `LOGGED_IN_SALT`, `NONCE_SALT`
-    * Generate with [wp-cli-dotenv-command](https://github.com/aaemnnosttv/wp-cli-dotenv-command)
-    * Generate with [our WordPress salts generator](https://roots.io/salts.html)
-3. Add theme(s) in `web/app/themes/` as you would for a normal WordPress site
-4. Set the document root on your webserver to Bedrock's `web` folder: `/path/to/site/web/`
-5. Access WordPress admin at `https://example.com/wp/wp-admin/`
+    git clone https://github.com/sudoist/cpdock.git your-classicpress-site
 
-## Documentation
+    ```
+2. cd into the project directory:
+    ```
+    cd your-classicpress-site
 
-Bedrock documentation is available at [https://roots.io/bedrock/docs/](https://roots.io/bedrock/docs/).
+    ```
+3. Copy the .env-example to .env
+    ```
+    cp .env-example .env
 
-## Contributing
+    ```
+4. Generate and copy `.env` variables with Bedrock's [WordPress salts generator](https://roots.io/salts.html) then....
 
-Contributions are welcome from everyone. We have [contributing guidelines](https://github.com/roots/guidelines/blob/master/CONTRIBUTING.md) to help you get started.
+5. Update the last section variables in the `.env` with the values from generator using your favorite text editor or IDE.
 
-## Bedrock sponsors
+    ```
+    # For example in my system with terminal.
 
-Help support our open-source development efforts by [becoming a patron](https://www.patreon.com/rootsdev).
+    featherpad .env
+    ```
+6. cd into the Laradock directory:
+    ```
+    cd laradock
 
-<a href="https://kinsta.com/?kaid=OFDHAJIXUDIV"><img src="https://cdn.roots.io/app/uploads/kinsta.svg" alt="Kinsta" width="200" height="150"></a> <a href="https://k-m.com/"><img src="https://cdn.roots.io/app/uploads/km-digital.svg" alt="KM Digital" width="200" height="150"></a> <a href="https://nestify.io/?utm_source=roots&utm_medium=banner&utm_campaign=footer"><img src="https://cdn.roots.io/app/uploads/nestify.svg" alt="Nestify" width="200" height="150"></a>
+    ```
+7. Copy the .env-example to .env
+    ```
+    cp env-example .env
 
-## Community
+    ```
+8. Run your server with nginx and mysql:
+    ```
+    docker-compose up -d nginx mysql
 
-Keep track of development and community news.
+    ```
+9. Login to Laradock workspace
+    ```
+    docker-compose exec --user=laradock workspace bash
+    ```
+10. Install dependencies with composer
+    ```
+    composer install
+    ```
+11. Access [localhost](http://localhost/) to start installation.
 
-* Participate on the [Roots Discourse](https://discourse.roots.io/)
-* Follow [@rootswp on Twitter](https://twitter.com/rootswp)
-* Read and subscribe to the [Roots Blog](https://roots.io/blog/)
-* Subscribe to the [Roots Newsletter](https://roots.io/subscribe/)
-* Listen to the [Roots Radio podcast](https://roots.io/podcast/)
+## Enjoy creating your new awesome site.
