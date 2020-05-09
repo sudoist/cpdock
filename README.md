@@ -63,4 +63,16 @@ The goal is to have a development environment by running a few commands.
     ```
 11. Access [localhost](http://localhost/) to start installation.
 
+## Based on Laradock and Bedrock
+
+### Laradock
+
+This project is based on awesome [Laradock](https://github.com/laradock/laradock).
+
+### Bedrock
+
+A WordPress boilerplate for setting up new projects with modern tools.
+
+[Bedrock](https://roots.io/bedrock/) works smoothly with ClassicPress installation.
+
 ## Enjoy creating your new awesome site.
