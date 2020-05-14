@@ -63,6 +63,22 @@ The goal is to have a development environment by running a few commands.
     ```
 11. Access [localhost](http://localhost/) to start installation.
 
+# Ecommerce plugins
+
+## [Classic Commerce](https://classiccommerce.cc/)
+
+> The Classic Commerce project was initiated in the early stages of the ClassicPress development process, when it became clear that a reliable e-commerce solution would be a necessity.
+
+> ClassicPress was promoting itself as the "business-focused CMS" and a dependable, secure and independent e-commerce plugin is obviously one of the basic requirements for the business community.
+
+If you would like to install Classic Commerce run these composer command instead of the one in step 10: 
+
+    ```
+    env COMPOSER=composer-cc.json composer install
+    ```
+
+Thanks to Classic Commerce community for helping with configuration to install with [composer](https://github.com/ClassicPress-research/classic-commerce/issues/239).
+
 ## Based on Laradock and Bedrock
 
 ### Laradock
