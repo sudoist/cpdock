@@ -28,10 +28,6 @@
       "type": "composer",
       "url": "https://wpackagist.org",
       "only": ["wpackagist-plugin/*", "wpackagist-theme/*"]
-    },
-    {
-      "type": "vcs",
-      "url": "https://github.com/nylen/classic-commerce.git"
     }
   ],
   "require": {
@@ -41,7 +37,7 @@
     "oscarotero/env": "^1.2.0",
     "roots/wp-config": "1.0.0",
     "roots/wp-password-bcrypt": "1.0.0",
-    "classicpress-research/classic-commerce": "dev-fix/composer-type#7f890d7"
+    "classicpress-research/classic-commerce": "dev-master#a641fb0"
   },
   "require-dev": {
     "squizlabs/php_codesniffer": "^3.5.4",
