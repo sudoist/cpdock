@@ -1,4 +1,7 @@
-# Cpdock
+# Bedrock Docker Dev
+
+> Used the Cpdock repo as a base for Bedrock project.
+> Same installation steps.
 
 Cpdock is an easy setup of ClassicPress with Docker using Laradock for setting up nginx and mysql/mariadb containers.
 
@@ -55,7 +58,10 @@ The goal is to have a development environment by running a few commands.
     ```
 9. Login to Laradock workspace
     ```
-    docker-compose exec --user=laradock workspace bash
+    docker-compose exec --user=laradock workspace bash // If getting permission errors, simply run as root by entering command below
+    ```
+    ```
+    docker-compose exec workspace bash // We only need to install composer
     ```
 10. Install dependencies with composer
     ```

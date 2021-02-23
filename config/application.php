@@ -9,6 +9,7 @@
  */
 
 use Roots\WPConfig\Config;
+use function Env\env;
 
 /**
  * Directory containing all of the site's files
@@ -25,14 +26,9 @@ $root_dir = dirname(__DIR__);
 $webroot_dir = $root_dir . '/web';
 
 /**
- * Expose global env() function from oscarotero/env
- */
-Env::init();
-
-/**
  * Use Dotenv to set required environment variables and load .env file in root
  */
-$dotenv = Dotenv\Dotenv::createImmutable($root_dir);
+$dotenv = Dotenv\Dotenv::createUnsafeImmutable($root_dir);
 if (file_exists($root_dir . '/.env')) {
     $dotenv->load();
     $dotenv->required(['WP_HOME', 'WP_SITEURL']);
@@ -101,6 +97,8 @@ Config::define('DISABLE_WP_CRON', env('DISABLE_WP_CRON') ?: false);
 Config::define('DISALLOW_FILE_EDIT', true);
 // Disable plugin and theme updates and installation from the admin
 Config::define('DISALLOW_FILE_MODS', true);
+// Limit the number of post revisions that Wordpress stores (true (default WP): store every revision)
+Config::define('WP_POST_REVISIONS', env('WP_POST_REVISIONS') ?: true);
 
 /**
  * Debugging Settings
